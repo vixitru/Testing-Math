@@ -60,7 +60,7 @@ public class MathTest {
     public void testMultiplying(double base, double a, double b) {
         double y = base;
         double exp = a+b;
-        assertEquals((Math.pow(y,a)*Math.pow(y,b)), Math.pow(y, exp), 0.0000000001);
+        assertEquals((Math.pow(y,a)*Math.pow(y,b)), Math.pow(y, exp));
     }
     @ParameterizedTest
     @CsvSource({
@@ -80,13 +80,25 @@ public class MathTest {
     public void testDividing(double base, double a, double b) {
        // xa / xb = xa-b
         double subexp = a-b;
-        assertEquals((Math.pow(base,a))/(Math.pow(base,b)), Math.pow(base, subexp), 0.00000000001);
+        assertEquals((Math.pow(base,a))/(Math.pow(base,b)), Math.pow(base, subexp));
     }
     @ParameterizedTest
     @ValueSource(doubles = {1, 5.0, 3.7, -1, -4.0, -4.9})
     public void testZeroPower(double base) {
         //x0 = 1
         assertEquals(Math.pow(base,0),1);
+    }
+    @ParameterizedTest
+    @ValueSource(doubles = {1, 5.0, 3.7, -1, -4.0, -4.9})
+    public void testOnePower(double base) {
+        //x1 = x
+        assertEquals(Math.pow(base, 1), base);
+    }
+    @ParameterizedTest
+    @ValueSource(doubles = {1, 5.0, 3.7, -1, -4.0, -4.9})
+    public void testZeroBase(double exponent) {
+        //0x = 0
+        assertEquals(Math.pow(0.0, Math.abs(exponent)), 0.0);
     }
 
 
