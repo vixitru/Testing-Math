@@ -82,6 +82,12 @@ public class MathTest {
         double subexp = a-b;
         assertEquals((Math.pow(base,a))/(Math.pow(base,b)), Math.pow(base, subexp), 0.00000000001);
     }
+    @ParameterizedTest
+    @ValueSource(doubles = {1, 5.0, 3.7, -1, -4.0, -4.9})
+    public void testZeroPower(double base) {
+        //x0 = 1
+        assertEquals(Math.pow(base,0),1);
+    }
 
 
 }
